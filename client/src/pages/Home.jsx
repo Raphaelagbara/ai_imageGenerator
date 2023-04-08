@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState,useEffects}from 'react'
 
 const Home = () => {
   return (
