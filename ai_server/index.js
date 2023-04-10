@@ -19,9 +19,13 @@ app.get("/", async (req, res) => {
 });
 
 //creating server instance
-Promise.all([connectDb])
-  .then(() => app.listen(8080, () => console.log("server is running on 8080")))
-  .catch((error) => {
-    console.error(`MongoDB Atlas Error: ${error}`);
-    process.exit();
-  });
+const startServer = async () => {
+  try {
+    connectDb(process.env.MONGO_URL);
+    app.listen(8080, () => console.log("Server started on port 8080"));
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+startServer();
